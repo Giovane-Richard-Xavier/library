@@ -1,6 +1,6 @@
 Descrição do Projeto: Library API
 
-O projeto Library API é uma aplicação desenvolvida em Java utilizando o framework Spring Boot. Ele foi criado com o objetivo de gerenciar um sistema de biblioteca, permitindo o cadastro, consulta, atualização e exclusão de livros, além de funcionalidades relacionadas ao gerenciamento de empréstimos.
+O projeto Library API é uma aplicação desenvolvida em Java utilizando o framework Spring Boot. Ele foi criado com o objetivo de gerenciar um sistema de biblioteca, permitindo o cadastro, consulta, atualização e exclusão de livros.
 
 Principais Tecnologias Utilizadas
 Spring Boot: Framework principal para simplificar o desenvolvimento e configuração da aplicação.
