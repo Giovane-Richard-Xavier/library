@@ -7,8 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @SpringBootTest
 public class AuthorRepositoryTest {
@@ -21,7 +19,7 @@ public class AuthorRepositoryTest {
         Author author = new Author();
         author.setName("Machado de Assis");
         author.setNationality("Brasileiro");
-        author.setBirthdate(LocalDate.of(1856, 6, 2));
+        author.setBirthdate(LocalDate.of(1839, 7, 21));
 
         var authorCreated = repository.save(author);
         System.out.println("Author criado: " + authorCreated);

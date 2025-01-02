@@ -1,5 +1,7 @@
 package io.github.giovanerichard.pcaapi.services;
 
+import io.github.giovanerichard.pcaapi.Model.Books;
+import io.github.giovanerichard.pcaapi.Model.GenreBooks;
 import io.github.giovanerichard.pcaapi.Model.Review;
 import io.github.giovanerichard.pcaapi.dtos.BookRecordDto;
 import io.github.giovanerichard.pcaapi.repository.AuthorRepository;
@@ -8,7 +10,6 @@ import io.github.giovanerichard.pcaapi.repository.PublisherRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Book;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,18 +25,22 @@ public class BookService {
         this.publisherRepository = publisherRepository;
     }
 
-//    @Transactional
-//    public Book saveBook (BookRecordDto bookRecordDto) {
-//        Book book = new Book();
-//        book.setTitle(bookRecordDto.title());
-//        book.setPublisher(publisherRepository.findById(bookRecordDto.publisherUuid()).get());
-//        book.setAuthors(authorRepository.findAllById(bookRecordDto.authorIds()).stream().collect(Collectors.toSet()));
-//
-//        Review review = new Review();
-//        review.setComment(bookRecordDto.reviewComment());
-//        review.setBook(book);
-//        book.setReview(review);
-//
-//        return bookRepository.save(book);
-//    }
+    @Transactional
+    public Books saveBook (BookRecordDto bookRecordDto) {
+        Books book = new Books();
+        book.setTitle(bookRecordDto.title());
+        book.setIsbn(bookRecordDto.isbn());
+        book.setPrice(bookRecordDto.price());
+        book.setGenre(GenreBooks.valueOf(bookRecordDto.genre()));
+        book.setPublicationDate(bookRecordDto.publication_date());
+        book.setPublisher(publisherRepository.findById(bookRecordDto.publisher_uuid()).get());
+        book.setAuthors(authorRepository.findAllById(bookRecordDto.author_uuid()).stream().collect(Collectors.toSet()));
+
+        Review review = new Review();
+        review.setComment(bookRecordDto.reviewComment());
+        review.setBook(book);
+        book.setReview(review);
+
+        return bookRepository.save(book);
+    }
 }
