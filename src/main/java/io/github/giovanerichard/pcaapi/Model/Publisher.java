@@ -1,5 +1,6 @@
 package io.github.giovanerichard.pcaapi.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -45,7 +46,7 @@ public class Publisher {
         this.updatedAt = LocalDateTime.now();
     }
 
-//    @JsonProperty(access = JsonProperty.Acess.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
     private Set<Books> books = new HashSet<>();
 

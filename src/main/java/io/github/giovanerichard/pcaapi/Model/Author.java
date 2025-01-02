@@ -1,5 +1,6 @@
 package io.github.giovanerichard.pcaapi.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -30,6 +31,7 @@ public class Author {
 //    @OneToMany(mappedBy = "autor")
 //    private Set<Books> books = new HashSet<>();
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
     private Set<Books> books = new HashSet<>();
 

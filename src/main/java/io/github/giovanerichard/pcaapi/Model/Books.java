@@ -1,5 +1,6 @@
 package io.github.giovanerichard.pcaapi.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -39,10 +40,7 @@ public class Books {
     @Column(name = "price", precision = 18, scale = 2)
     private BigDecimal price;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "author_uuid")
-//    private Author autor;
-
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "books_author",
@@ -50,6 +48,7 @@ public class Books {
             inverseJoinColumns = @JoinColumn(name = "author_uuid"))
     private Set<Author> authors = new HashSet<>();
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "publisher_uuid")
     private Publisher publisher;
